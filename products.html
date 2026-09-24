@@ -1,0 +1,899 @@
+<title>Products — Daeshin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap">
+
+<style>
+/* ── Tokens ─────────────────────────────────────────── */
+:root {
+  --c-bg:       #141414;
+  --c-bg2:      #1C1C1C;
+  --c-bg3:      #252525;
+  --c-cream:    #F0F0F0;
+  --c-cream2:   #C8C8C8;
+  --c-red:      #B30000;
+  --c-red2:     #8C0000;
+  --c-mid:      #AAAAAA;
+  --c-border:   rgba(179,0,0,0.22);
+  --c-border2:  rgba(240,240,240,0.08);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --c-bg:      #F5F5F5;
+    --c-bg2:     #EBEBEB;
+    --c-bg3:     #DEDEDE;
+    --c-cream:   #111111;
+    --c-cream2:  #333333;
+    --c-red:     #B30000;
+    --c-red2:    #8C0000;
+    --c-mid:     #555555;
+    --c-border:  rgba(179,0,0,0.18);
+    --c-border2: rgba(0,0,0,0.08);
+    color-scheme: light;
+  }
+}
+:root[data-theme="dark"] {
+  --c-bg:      #141414;
+  --c-bg2:     #1C1C1C;
+  --c-bg3:     #252525;
+  --c-cream:   #F0F0F0;
+  --c-cream2:  #C8C8C8;
+  --c-red:     #B30000;
+  --c-red2:    #8C0000;
+  --c-mid:     #AAAAAA;
+  --c-border:  rgba(179,0,0,0.22);
+  --c-border2: rgba(240,240,240,0.08);
+  color-scheme: dark;
+}
+
+/* ── Reset ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--c-bg);
+  color: var(--c-cream);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ── Typography ──────────────────────────────────────── */
+.t-display {
+  font-family: 'Cormorant Garant', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.05;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+.t-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+}
+.nav.scrolled {
+  background: rgba(18,18,18,0.93);
+  backdrop-filter: blur(12px);
+  padding: 16px 48px;
+  border-bottom: 1px solid var(--c-border);
+}
+.nav-logo {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-cream);
+}
+.nav-logo span { color: var(--c-red); }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--c-cream2);
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--c-red); }
+.nav-cta {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--c-red);
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-block;
+}
+.nav-cta:hover { background: var(--c-red2); }
+.nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--c-cream); margin: 5px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ── PAGE HEADER ─────────────────────────────────────── */
+.page-header {
+  padding: 160px 48px 80px;
+  background: var(--c-bg2);
+  border-bottom: 1px solid var(--c-border2);
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(179,0,0,0.04) 100%);
+  pointer-events: none;
+}
+.page-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.page-header h1 {
+  font-size: clamp(38px, 6vw, 70px);
+  color: var(--c-cream);
+  margin-bottom: 16px;
+}
+.page-header p {
+  font-size: 15px;
+  color: var(--c-mid);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ── PRODUCT TABS ────────────────────────────────────── */
+.prod-tabs {
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-border2);
+  position: sticky;
+  top: 57px;
+  z-index: 50;
+}
+.prod-tabs-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 48px;
+}
+.tab-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--c-mid);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 18px 0;
+  margin-right: 36px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn.active, .tab-btn:hover { color: var(--c-cream); }
+.tab-btn.active { border-bottom-color: var(--c-red); color: var(--c-cream); }
+
+/* ── PRODUCT SECTION ─────────────────────────────────── */
+.prod-section {
+  padding: 80px 48px;
+  max-width: 960px;
+  margin: 0 auto;
+  display: none;
+}
+.prod-section.active { display: block; }
+
+/* Hero row */
+.prod-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-bottom: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--c-border2);
+}
+.prod-hero-text {}
+.prod-hero-text .t-label { display: block; margin-bottom: 16px; }
+.prod-hero-text h2 {
+  font-size: clamp(32px, 4.5vw, 54px);
+  color: var(--c-cream);
+  margin-bottom: 20px;
+}
+.prod-hero-text p {
+  font-size: 14px;
+  color: var(--c-mid);
+  line-height: 1.75;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+.prod-hero-visual {
+  background: var(--c-bg2);
+  border: 1px solid var(--c-border2);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.prod-hero-visual-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.2;
+}
+.prod-hero-visual-placeholder svg { width: 56px; height: 56px; }
+.prod-hero-visual-placeholder p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-cream2); }
+.prod-hero-visual-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(179,0,0,0.08);
+  border-top: 1px solid var(--c-border);
+  padding: 10px 16px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  text-align: center;
+}
+
+/* Spec table */
+.spec-section { margin-bottom: 64px; }
+.spec-section-title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-cream2);
+  margin-bottom: 2px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-border);
+}
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid var(--c-border2); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table td {
+  padding: 14px 0;
+  font-size: 13px;
+  vertical-align: top;
+}
+.spec-table td:first-child {
+  color: var(--c-mid);
+  width: 38%;
+  padding-right: 24px;
+}
+.spec-table td:last-child {
+  color: var(--c-cream);
+  font-weight: 400;
+}
+.spec-highlight {
+  color: var(--c-red) !important;
+  font-weight: 500;
+}
+
+/* Cap grid */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 2px;
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
+  margin-bottom: 64px;
+}
+.cap-item {
+  background: var(--c-bg2);
+  padding: 20px 14px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.cap-item:hover { background: var(--c-bg3); }
+.cap-icon { margin: 0 auto 10px; }
+.cap-icon svg { width: 28px; height: 28px; display: block; margin: 0 auto; }
+.cap-name {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--c-cream2);
+  line-height: 1.3;
+}
+
+/* Printing section */
+.print-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
+  margin-bottom: 64px;
+}
+.print-card {
+  background: var(--c-bg2);
+  padding: 28px 24px;
+  transition: background 0.2s;
+}
+.print-card:hover { background: var(--c-bg3); }
+.print-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.print-card-head svg { width: 20px; height: 20px; flex-shrink: 0; }
+.print-card h4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-cream);
+  letter-spacing: 0.02em;
+}
+.print-card p {
+  font-size: 12px;
+  color: var(--c-mid);
+  line-height: 1.6;
+}
+
+/* PCR bar */
+.pcr-bar {
+  background: var(--c-bg2);
+  border: 1px solid var(--c-border2);
+  border-left: 3px solid var(--c-red);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.pcr-bar-label { font-size: 13px; color: var(--c-mid); }
+.pcr-bar-val { font-size: 15px; font-weight: 500; color: var(--c-cream); }
+.pcr-meter {
+  flex: 1;
+  min-width: 120px;
+  height: 4px;
+  background: var(--c-border2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.pcr-meter-fill {
+  height: 100%;
+  background: var(--c-red);
+  border-radius: 2px;
+}
+
+/* CTA strip */
+.cta-strip {
+  background: var(--c-bg2);
+  border: 1px solid var(--c-border2);
+  border-top: 2px solid var(--c-red);
+  padding: 40px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cta-strip h3 {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--c-cream);
+}
+.cta-strip p { font-size: 13px; color: var(--c-mid); margin-top: 4px; }
+.btn-primary {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--c-red);
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-block;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-primary:hover { background: var(--c-red2); }
+
+/* ── MOBILE MENU ─────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(14,14,14,0.98);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--c-cream);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--c-red); }
+.mobile-menu .btn-primary { margin-top: 8px; }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer {
+  background: var(--c-bg2);
+  border-top: 1px solid var(--c-border2);
+  padding: 48px;
+  margin-top: 80px;
+}
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-brand p { font-size: 12px; color: var(--c-mid); line-height: 1.6; max-width: 240px; margin-top: 8px; }
+.footer-info { display: flex; flex-direction: column; gap: 6px; text-align: right; }
+.footer-info span { font-size: 12px; color: var(--c-mid); }
+.footer-info strong { color: var(--c-cream2); }
+.footer-copy {
+  max-width: 960px; margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-border2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-copy span { font-size: 11px; color: var(--c-mid); letter-spacing: 0.04em; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav { padding: 18px 20px; }
+  .nav.scrolled { padding: 12px 20px; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: block; }
+  .page-header { padding: 120px 20px 56px; }
+  .prod-tabs-inner { padding: 0 20px; }
+  .prod-section { padding: 48px 20px; }
+  .prod-hero { grid-template-columns: 1fr; gap: 32px; }
+  .cap-grid { grid-template-columns: repeat(3, 1fr); }
+  .print-grid { grid-template-columns: 1fr 1fr; }
+  .cta-strip { flex-direction: column; align-items: flex-start; }
+  .footer { padding: 40px 20px; }
+  .footer-info { text-align: left; }
+}
+</style>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">DAESHIN<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="index.html#why">Why Us</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="quote.html" class="nav-cta">Get a Quote</a>
+  <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="products.html">Products</a>
+  <a href="index.html#why">Why Us</a>
+  <a href="about.html">About</a>
+  <a href="quote.html" class="btn-primary">Get a Quote</a>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <span class="t-label" style="display:block;margin-bottom:16px">Our Products</span>
+    <h1 class="t-display">Tubes Built for<br><em style="color:var(--c-red)">K-Beauty Standards</em></h1>
+    <p>PE and PCR tubes — every diameter, every cap type, every finish. Manufactured in our 2024-built facility in Paju, South Korea.</p>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="prod-tabs">
+  <div class="prod-tabs-inner">
+    <button class="tab-btn active" data-tab="pe">PE Tube</button>
+    <button class="tab-btn" data-tab="pcr">PCR Tube</button>
+  </div>
+</div>
+
+<!-- ── PE TUBE SECTION ───────────────────────────────── -->
+<div class="prod-section active" id="tab-pe">
+  <div class="prod-hero">
+    <div class="prod-hero-text">
+      <span class="t-label">Standard Line</span>
+      <h2 class="t-display">PE Tube</h2>
+      <p>Our core product — LDPE and HDPE tubes engineered to carry any cosmetic formulation from cleanser to heavy cream. Available in mono-layer and 5-layer barrier constructions.</p>
+      <a href="quote.html" class="btn-primary">Request a Quote</a>
+    </div>
+    <div class="prod-hero-visual">
+      <div class="prod-hero-visual-placeholder">
+        <svg viewBox="0 0 56 56" fill="none" stroke="var(--c-cream)" stroke-width="1.2">
+          <rect x="18" y="4" width="20" height="48" rx="10"/>
+          <line x1="18" y1="18" x2="38" y2="18"/>
+        </svg>
+        <p>Product photo</p>
+      </div>
+      <div class="prod-hero-visual-label">PE Tube — Photo coming soon</div>
+    </div>
+  </div>
+
+  <!-- Specs -->
+  <div class="spec-section">
+    <div class="spec-section-title">Specifications</div>
+    <table class="spec-table">
+      <tr>
+        <td>Material</td>
+        <td>LDPE (Low-Density) · HDPE (High-Density) · 5-Layer Co-extruded</td>
+      </tr>
+      <tr>
+        <td>Diameter</td>
+        <td class="spec-highlight">Ø16 mm — Ø60 mm</td>
+      </tr>
+      <tr>
+        <td>Volume</td>
+        <td>10 ml — 500 ml</td>
+      </tr>
+      <tr>
+        <td>MOQ</td>
+        <td class="spec-highlight">10,000 pcs per SKU</td>
+      </tr>
+      <tr>
+        <td>Lead Time</td>
+        <td>30 – 45 days (standard) · Rush available on request</td>
+      </tr>
+      <tr>
+        <td>Origin</td>
+        <td>Made in Korea — Paju, Gyeonggi-do</td>
+      </tr>
+      <tr>
+        <td>Certifications</td>
+        <td>ISO 9001 · ISO 45001</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Cap types -->
+  <div class="spec-section">
+    <div class="spec-section-title">Cap Types</div>
+    <div class="cap-grid">
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="8" y="4" width="12" height="8" rx="2"/>
+            <rect x="6" y="12" width="16" height="12" rx="1"/>
+          </svg>
+        </div>
+        <div class="cap-name">민자<br><span style="color:var(--c-mid);font-size:10px">Flat Cap</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="8" y="4" width="12" height="8" rx="2"/>
+            <rect x="6" y="12" width="16" height="12" rx="1"/>
+            <path d="M14 8v4" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="cap-name">원터치<br><span style="color:var(--c-mid);font-size:10px">Flip Top</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <ellipse cx="14" cy="8" rx="8" ry="5"/>
+            <rect x="6" y="8" width="16" height="14" rx="1"/>
+          </svg>
+        </div>
+        <div class="cap-name">타원<br><span style="color:var(--c-mid);font-size:10px">Oval</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <ellipse cx="14" cy="8" rx="8" ry="5"/>
+            <rect x="6" y="8" width="16" height="14" rx="1"/>
+            <path d="M14 5v6" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="cap-name">타원 원터치<br><span style="color:var(--c-mid);font-size:10px">Oval Flip</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <circle cx="14" cy="9" r="6"/>
+            <rect x="6" y="14" width="16" height="10" rx="1"/>
+          </svg>
+        </div>
+        <div class="cap-name">둥근 캡<br><span style="color:var(--c-mid);font-size:10px">Round</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="10" y="2" width="8" height="14" rx="1"/>
+            <path d="M14 16v8" stroke-width="1.8"/>
+            <circle cx="14" cy="6" r="2" fill="var(--c-red)" stroke="none"/>
+          </svg>
+        </div>
+        <div class="cap-name">펌프<br><span style="color:var(--c-mid);font-size:10px">Pump</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="10" y="4" width="8" height="16" rx="1"/>
+            <path d="M14 20l-3 5h6l-3-5z" fill="var(--c-red)" stroke="none"/>
+          </svg>
+        </div>
+        <div class="cap-name">드롭퍼<br><span style="color:var(--c-mid);font-size:10px">Dropper</span></div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="9" y="4" width="10" height="12" rx="1"/>
+            <path d="M14 16v2m-4 0h8" stroke-width="1.3"/>
+            <circle cx="14" cy="21" r="3"/>
+          </svg>
+        </div>
+        <div class="cap-name">노즐<br><span style="color:var(--c-mid);font-size:10px">Nozzle</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printing -->
+  <div class="spec-section">
+    <div class="spec-section-title">Printing &amp; Finishing</div>
+    <div class="print-grid">
+      <div class="print-card">
+        <div class="print-card-head">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="3" y="5" width="14" height="10" rx="1"/>
+            <path d="M7 9h6M7 12h4"/>
+          </svg>
+          <h4>Offset Printing</h4>
+        </div>
+        <p>Full-color offset as standard. Sharp text, photographic gradients, up to 4-color process — the foundation of every tube.</p>
+      </div>
+      <div class="print-card">
+        <div class="print-card-head">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <circle cx="10" cy="10" r="7"/>
+            <path d="M7 10h6M10 7v6"/>
+          </svg>
+          <h4>Silk Screen</h4>
+        </div>
+        <p>Up to 3 Pantone colors. Ideal for bold brand colors, clean solid fills, and premium spot color accuracy.</p>
+      </div>
+      <div class="print-card">
+        <div class="print-card-head">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <path d="M4 16l4-4 3 3 5-7"/>
+            <circle cx="16" cy="5" r="2" fill="var(--c-red)" stroke="none"/>
+          </svg>
+          <h4>Hot Stamping</h4>
+        </div>
+        <p>Metallic foil stamping for a luxury shelf presence. Gold, silver, rose gold, and custom foil colors available.</p>
+      </div>
+      <div class="print-card">
+        <div class="print-card-head">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.3">
+            <rect x="3" y="3" width="14" height="14" rx="2"/>
+            <path d="M7 10h6"/>
+          </svg>
+          <h4>Coating</h4>
+        </div>
+        <p>Gloss · Matte · Semi-matte · Rubber coating. Each finish changes the hand-feel and shelf personality of the tube.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div>
+      <h3 class="t-display">Ready to spec your PE Tube?</h3>
+      <p>Send us your diameter, volume, and cap requirements — we'll respond within 24 hours.</p>
+    </div>
+    <a href="quote.html" class="btn-primary">Get a Quote</a>
+  </div>
+</div>
+
+<!-- ── PCR TUBE SECTION ──────────────────────────────── -->
+<div class="prod-section" id="tab-pcr">
+  <div class="prod-hero">
+    <div class="prod-hero-text">
+      <span class="t-label">Eco Line</span>
+      <h2 class="t-display">PCR Tube</h2>
+      <p>Post-consumer recycled PE tubes — the same tight tolerances and print quality as our standard line, built for brands meeting EU sustainability targets and K-beauty ESG commitments.</p>
+      <a href="quote.html" class="btn-primary">Request a Quote</a>
+    </div>
+    <div class="prod-hero-visual">
+      <div class="prod-hero-visual-placeholder">
+        <svg viewBox="0 0 56 56" fill="none" stroke="var(--c-cream)" stroke-width="1.2">
+          <rect x="18" y="4" width="20" height="48" rx="10"/>
+          <path d="M23 22c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5-5-2.2-5-5z" stroke-dasharray="3 2"/>
+        </svg>
+        <p>PCR Product photo</p>
+      </div>
+      <div class="prod-hero-visual-label">PCR Tube — Eco Line</div>
+    </div>
+  </div>
+
+  <!-- PCR Content -->
+  <div class="spec-section">
+    <div class="spec-section-title">PCR Content Options</div>
+    <div class="pcr-bar">
+      <span class="pcr-bar-label">PCR Content</span>
+      <div class="pcr-meter"><div class="pcr-meter-fill" style="width:40%"></div></div>
+      <span class="pcr-bar-val">40%</span>
+    </div>
+    <div class="pcr-bar">
+      <span class="pcr-bar-label">PCR Content</span>
+      <div class="pcr-meter"><div class="pcr-meter-fill" style="width:50%"></div></div>
+      <span class="pcr-bar-val">50%</span>
+    </div>
+    <div class="pcr-bar">
+      <span class="pcr-bar-label">PCR Content</span>
+      <div class="pcr-meter"><div class="pcr-meter-fill" style="width:100%"></div></div>
+      <span class="pcr-bar-val">100%</span>
+    </div>
+  </div>
+
+  <!-- Specs -->
+  <div class="spec-section">
+    <div class="spec-section-title">Specifications</div>
+    <table class="spec-table">
+      <tr>
+        <td>Material</td>
+        <td>Post-Consumer Recycled LDPE / HDPE</td>
+      </tr>
+      <tr>
+        <td>PCR Options</td>
+        <td class="spec-highlight">40% · 50% · 100% PCR content</td>
+      </tr>
+      <tr>
+        <td>Diameter</td>
+        <td>Ø16 mm — Ø60 mm</td>
+      </tr>
+      <tr>
+        <td>Volume</td>
+        <td>10 ml — 500 ml</td>
+      </tr>
+      <tr>
+        <td>MOQ</td>
+        <td class="spec-highlight">10,000 pcs per SKU</td>
+      </tr>
+      <tr>
+        <td>Compliance</td>
+        <td>EU Single-Use Plastics Directive compatible · REACH compliant</td>
+      </tr>
+      <tr>
+        <td>Certifications</td>
+        <td>ISO 9001 · ISO 45001</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Same cap & print -->
+  <div class="spec-section">
+    <div class="spec-section-title">Cap Types &amp; Finishing</div>
+    <p style="font-size:13px;color:var(--c-mid);line-height:1.7;margin-bottom:0">
+      PCR Tubes support the same full cap range and printing options as our standard PE line —
+      민자 · 원터치 · 타원 · 타원원터치 · 둥근 · 펌프 · 드롭퍼 · 노즐.
+      Offset, silk screen (up to 3 colors), hot stamping, and all coating options apply.
+      <a href="#" data-tab-link="pe" style="color:var(--c-red);text-decoration:underline;text-underline-offset:3px;cursor:pointer">
+        See full spec on the PE Tube tab →
+      </a>
+    </p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div>
+      <h3 class="t-display">Building a sustainable line?</h3>
+      <p>Tell us your PCR target and formulation — we'll recommend the right construction.</p>
+    </div>
+    <a href="quote.html" class="btn-primary">Get a Quote</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">DAESHIN<span style="color:var(--c-red)">.</span></div>
+      <p>PE Tube Manufacturer<br>Paju, South Korea</p>
+    </div>
+    <div class="footer-info">
+      <span><strong>Daeshin Co., Ltd.</strong></span>
+      <span>Paju, Gyeonggi-do, South Korea</span>
+      <span>info@daeshintube.com</span>
+      <span>ISO 9001 · ISO 45001 Certified</span>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Daeshin Co., Ltd. All rights reserved.</span>
+    <span>daeshintube.com</span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Mobile menu
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+});
+
+// Tabs
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabSections = document.querySelectorAll('.prod-section');
+function switchTab(id) {
+  tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+  tabSections.forEach(s => s.classList.toggle('active', s.id === 'tab-' + id));
+}
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+
+// Cross-tab link
+document.querySelectorAll('[data-tab-link]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    switchTab(a.dataset.tabLink);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>

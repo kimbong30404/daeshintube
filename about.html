@@ -1,0 +1,753 @@
+<title>About — Daeshin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap">
+
+<style>
+/* ── Tokens ─────────────────────────────────────────── */
+:root {
+  --c-bg:       #141414;
+  --c-bg2:      #1C1C1C;
+  --c-bg3:      #252525;
+  --c-cream:    #F0F0F0;
+  --c-cream2:   #C8C8C8;
+  --c-red:      #B30000;
+  --c-red2:     #8C0000;
+  --c-mid:      #AAAAAA;
+  --c-border:   rgba(179,0,0,0.22);
+  --c-border2:  rgba(240,240,240,0.08);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --c-bg:      #F5F5F5;
+    --c-bg2:     #EBEBEB;
+    --c-bg3:     #DEDEDE;
+    --c-cream:   #111111;
+    --c-cream2:  #333333;
+    --c-red:     #B30000;
+    --c-red2:    #8C0000;
+    --c-mid:     #555555;
+    --c-border:  rgba(179,0,0,0.18);
+    --c-border2: rgba(0,0,0,0.08);
+    color-scheme: light;
+  }
+}
+:root[data-theme="dark"] {
+  --c-bg:      #141414;
+  --c-bg2:     #1C1C1C;
+  --c-bg3:     #252525;
+  --c-cream:   #F0F0F0;
+  --c-cream2:  #C8C8C8;
+  --c-red:     #B30000;
+  --c-red2:    #8C0000;
+  --c-mid:     #AAAAAA;
+  --c-border:  rgba(179,0,0,0.22);
+  --c-border2: rgba(240,240,240,0.08);
+  color-scheme: dark;
+}
+
+/* ── Reset ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--c-bg);
+  color: var(--c-cream);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ── Typography ──────────────────────────────────────── */
+.t-display {
+  font-family: 'Cormorant Garant', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.05;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+.t-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+}
+.nav.scrolled {
+  background: rgba(18,18,18,0.93);
+  backdrop-filter: blur(12px);
+  padding: 16px 48px;
+  border-bottom: 1px solid var(--c-border2);
+}
+.nav-logo {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-cream);
+}
+.nav-logo span { color: var(--c-red); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--c-cream2);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--c-red); }
+.nav-cta {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--c-red);
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-block;
+}
+.nav-cta:hover { background: var(--c-red2); }
+.nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--c-cream); margin: 5px 0;
+}
+
+/* ── PAGE HEADER ─────────────────────────────────────── */
+.page-header {
+  padding: 160px 48px 80px;
+  background: var(--c-bg2);
+  border-bottom: 1px solid var(--c-border2);
+  position: relative;
+  overflow: hidden;
+}
+.page-header::after {
+  content: 'DAESHIN';
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  font-family: 'Cormorant Garant', serif;
+  font-size: 160px;
+  font-weight: 600;
+  color: rgba(179,0,0,0.04);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+.page-header-inner { max-width: 960px; margin: 0 auto; }
+.page-header .t-label { display: block; margin-bottom: 16px; }
+.page-header h1 {
+  font-size: clamp(38px, 6vw, 70px);
+  color: var(--c-cream);
+  margin-bottom: 20px;
+}
+.page-header p {
+  font-size: 15px;
+  color: var(--c-mid);
+  max-width: 560px;
+  line-height: 1.75;
+}
+
+/* ── SECTIONS ────────────────────────────────────────── */
+.section { padding: 88px 48px; }
+.section-inner { max-width: 960px; margin: 0 auto; }
+.section + .section { border-top: 1px solid var(--c-border2); }
+.section.bg2 { background: var(--c-bg2); }
+
+/* ── STORY ───────────────────────────────────────────── */
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.story-text .t-label { display: block; margin-bottom: 16px; }
+.story-text h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  color: var(--c-cream);
+  margin-bottom: 24px;
+}
+.story-text p {
+  font-size: 14px;
+  color: var(--c-mid);
+  line-height: 1.8;
+  margin-bottom: 18px;
+  max-width: 420px;
+}
+.story-text p:last-child { margin-bottom: 0; }
+
+/* Timeline */
+.timeline { display: flex; flex-direction: column; }
+.tl-item {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 32px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 32px;
+  bottom: 0;
+  width: 1px;
+  background: var(--c-border2);
+}
+.tl-dot {
+  width: 40px; height: 40px;
+  border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  background: var(--c-bg2);
+}
+.tl-dot span {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 13px;
+  color: var(--c-red);
+  font-weight: 400;
+}
+.tl-body { padding-top: 8px; }
+.tl-body h4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-cream);
+  margin-bottom: 4px;
+}
+.tl-body p { font-size: 12px; color: var(--c-mid); line-height: 1.6; }
+
+/* ── STATS ROW ───────────────────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
+}
+.stat-box {
+  background: var(--c-bg2);
+  padding: 40px 28px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Cormorant Garant', serif;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 300;
+  color: var(--c-red);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-desc {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--c-mid);
+  line-height: 1.5;
+}
+
+/* ── FACTORY ─────────────────────────────────────────── */
+.factory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.factory-visual {
+  background: var(--c-bg3);
+  border: 1px solid var(--c-border2);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.factory-visual-ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.18;
+}
+.factory-visual-ph svg { width: 52px; height: 52px; }
+.factory-visual-ph p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-cream2); }
+.factory-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(179,0,0,0.08);
+  border-top: 1px solid var(--c-border);
+  padding: 8px 14px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  text-align: center;
+}
+.factory-text .t-label { display: block; margin-bottom: 16px; }
+.factory-text h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--c-cream);
+  margin-bottom: 20px;
+}
+.factory-text p {
+  font-size: 14px;
+  color: var(--c-mid);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.factory-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+.factory-bullet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--c-cream2);
+}
+.factory-bullet::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--c-red);
+  flex-shrink: 0;
+}
+
+/* ── CERTS ───────────────────────────────────────────── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px;
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
+}
+.cert-card {
+  background: var(--c-bg2);
+  padding: 36px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: background 0.2s;
+}
+.cert-card:hover { background: var(--c-bg3); }
+.cert-icon {
+  width: 44px; height: 44px;
+  border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cert-icon svg { width: 20px; height: 20px; }
+.cert-body {}
+.cert-body h4 { font-size: 15px; font-weight: 500; color: var(--c-cream); margin-bottom: 4px; letter-spacing: 0.02em; }
+.cert-body p { font-size: 12px; color: var(--c-mid); line-height: 1.6; }
+
+/* ── CLIENTS ─────────────────────────────────────────── */
+.clients-wrap { }
+.clients-intro { margin-bottom: 40px; }
+.clients-intro .t-label { display: block; margin-bottom: 12px; }
+.clients-intro h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--c-cream);
+  margin-bottom: 12px;
+}
+.clients-intro p { font-size: 14px; color: var(--c-mid); max-width: 500px; line-height: 1.7; }
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
+}
+.client-cell {
+  background: var(--c-bg);
+  padding: 24px 16px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.client-cell:hover { background: var(--c-bg3); }
+.client-cell span {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 14px;
+  color: var(--c-cream2);
+  letter-spacing: 0.03em;
+}
+.clients-note {
+  font-size: 11px;
+  color: var(--c-mid);
+  margin-top: 20px;
+  letter-spacing: 0.04em;
+}
+
+/* ── CTA ─────────────────────────────────────────────── */
+.cta-band {
+  background: var(--c-red);
+  padding: 64px 48px;
+  text-align: center;
+}
+.cta-band h2 {
+  font-size: clamp(28px, 4vw, 50px);
+  color: #fff;
+  margin-bottom: 12px;
+}
+.cta-band p { font-size: 14px; color: rgba(255,255,255,0.72); margin-bottom: 32px; }
+.btn-white {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  background: #fff;
+  padding: 14px 36px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+.btn-white:hover { opacity: 0.88; }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer {
+  background: var(--c-bg2);
+  border-top: 1px solid var(--c-border2);
+  padding: 48px;
+}
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-brand p { font-size: 12px; color: var(--c-mid); line-height: 1.6; max-width: 240px; margin-top: 8px; }
+.footer-info { display: flex; flex-direction: column; gap: 6px; text-align: right; }
+.footer-info span { font-size: 12px; color: var(--c-mid); }
+.footer-info strong { color: var(--c-cream2); }
+.footer-copy {
+  max-width: 960px; margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-border2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-copy span { font-size: 11px; color: var(--c-mid); letter-spacing: 0.04em; }
+
+/* ── MOBILE MENU ─────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(14,14,14,0.98);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--c-cream);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--c-red); }
+.mobile-menu .nav-cta { font-family: 'Inter', sans-serif; font-size: 12px; margin-top: 8px; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav { padding: 18px 20px; }
+  .nav.scrolled { padding: 12px 20px; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: block; }
+  .page-header { padding: 120px 20px 56px; }
+  .page-header::after { font-size: 80px; right: -10px; bottom: -10px; }
+  .section { padding: 56px 20px; }
+  .story-grid { grid-template-columns: 1fr; gap: 48px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .factory-grid { grid-template-columns: 1fr; gap: 36px; }
+  .clients-grid { grid-template-columns: repeat(3, 1fr); }
+  .cta-band { padding: 48px 20px; }
+  .footer { padding: 40px 20px; }
+  .footer-info { text-align: left; }
+}
+</style>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">DAESHIN<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="index.html#why">Why Us</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+  </ul>
+  <a href="quote.html" class="nav-cta">Get a Quote</a>
+  <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="products.html">Products</a>
+  <a href="index.html#why">Why Us</a>
+  <a href="about.html">About</a>
+  <a href="quote.html" class="nav-cta">Get a Quote</a>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <span class="t-label">About Daeshin</span>
+    <h1 class="t-display">Nearly Two Decades<br>of <em style="color:var(--c-red)">Korean Precision</em></h1>
+    <p>Founded in 2007 in Paju, Gyeonggi-do, Daeshin Co., Ltd. has grown from a regional tube supplier into a trusted manufacturing partner for Korea's most recognized beauty brands and OEMs.</p>
+  </div>
+</header>
+
+<!-- STATS -->
+<section class="section bg2">
+  <div class="section-inner">
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num">2007</div>
+        <div class="stat-desc">Year established<br>Paju, South Korea</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">19<span style="font-size:0.55em;vertical-align:middle">yrs</span></div>
+        <div class="stat-desc">Manufacturing<br>experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5M<span style="font-size:0.55em;vertical-align:middle">+</span></div>
+        <div class="stat-desc">Units monthly<br>capacity</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100<span style="font-size:0.45em;vertical-align:middle">%</span></div>
+        <div class="stat-desc">Quality inspection<br>every unit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-text">
+        <span class="t-label">Our Story</span>
+        <h2 class="t-display">Built on the<br><em style="color:var(--c-red)">Standards of K-Beauty</em></h2>
+        <p>Daeshin was founded in 2007 with a straightforward purpose: to manufacture PE tubes that meet the exacting standards of Korea's cosmetics industry. Over nineteen years, that purpose hasn't changed — only our scale and capability have.</p>
+        <p>Our clients include some of the most demanding OEM manufacturers and fastest-growing K-beauty brands in Korea. Supplying them has sharpened every aspect of our process — from raw material selection to final QC — to a level that transfers directly to any brand we work with.</p>
+        <p>In 2024, we relocated to a purpose-built facility in Paju. The new factory was designed from the ground up for cleaner production, better climate control, and the capacity to meet growing demand without compromising quality.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"><span>07</span></div>
+          <div class="tl-body">
+            <h4>Founded in Paju</h4>
+            <p>Daeshin Co., Ltd. established as a PE tube specialist for the domestic cosmetics market.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>12</span></div>
+          <div class="tl-body">
+            <h4>OEM partnerships begin</h4>
+            <p>First supply contracts with major Korean OEM/ODM manufacturers, setting a new quality benchmark.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>18</span></div>
+          <div class="tl-body">
+            <h4>ISO 9001 certified</h4>
+            <p>Quality management system formally certified. ISO 45001 (safety) follows shortly after.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>22</span></div>
+          <div class="tl-body">
+            <h4>PCR line launched</h4>
+            <p>Post-consumer recycled tube line introduced to meet EU sustainability requirements and brand ESG commitments.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>24</span></div>
+          <div class="tl-body">
+            <h4>New factory opens</h4>
+            <p>Relocated to a state-of-the-art 2024-built facility in Paju — designed for scale, precision, and the next decade of growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTORY -->
+<section class="section bg2">
+  <div class="section-inner">
+    <div class="factory-grid">
+      <div class="factory-visual">
+        <div class="factory-visual-ph">
+          <svg viewBox="0 0 52 52" fill="none" stroke="var(--c-cream)" stroke-width="1.2">
+            <rect x="4" y="24" width="44" height="24" rx="1"/>
+            <path d="M4 24l12-16h20l12 16"/>
+            <rect x="18" y="32" width="8" height="16" rx="0.5"/>
+            <rect x="30" y="32" width="8" height="10" rx="0.5"/>
+            <path d="M26 8v8"/>
+          </svg>
+          <p>Factory photo</p>
+        </div>
+        <div class="factory-label">Paju Factory — Photo coming soon</div>
+      </div>
+      <div class="factory-text">
+        <span class="t-label">Our Facility</span>
+        <h2 class="t-display">Built New<br><em style="color:var(--c-red)">in 2024</em></h2>
+        <p>Our Paju factory is 1 hour from Incheon International Airport — purpose-built for precision tube manufacturing with modern climate control, cleanroom-class assembly zones, and full in-house QC.</p>
+        <p>Every tube is inspected before it leaves. We don't outsource quality control.</p>
+        <div class="factory-bullets">
+          <div class="factory-bullet">Built and operational since 2024</div>
+          <div class="factory-bullet">Paju, Gyeonggi-do — 1 hr from Incheon Airport</div>
+          <div class="factory-bullet">5,000,000+ units monthly capacity</div>
+          <div class="factory-bullet">In-house printing, coating, and assembly</div>
+          <div class="factory-bullet">100% QC inspection on every unit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section">
+  <div class="section-inner">
+    <div style="margin-bottom:40px">
+      <span class="t-label" style="display:block;margin-bottom:12px">Certifications</span>
+      <h2 class="t-display" style="font-size:clamp(28px,3.5vw,44px);color:var(--c-cream)">Quality You Can<br><em style="color:var(--c-red)">Document</em></h2>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.4">
+            <circle cx="10" cy="10" r="8"/>
+            <path d="M6.5 10l2.5 2.5 4.5-5"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <h4>ISO 9001:2015</h4>
+          <p>Quality Management System — covers design, production, and delivery. Our most foundational certification, renewed annually.</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.4">
+            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <h4>ISO 45001:2018</h4>
+          <p>Occupational Health &amp; Safety Management — documents our commitment to a safe, consistent working environment and production quality.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="section bg2">
+  <div class="section-inner">
+    <div class="clients-wrap">
+      <div class="clients-intro">
+        <span class="t-label">Our Partners</span>
+        <h2 class="t-display">Trusted by Korea's<br><em style="color:var(--c-red)">Leading Beauty Industry</em></h2>
+        <p>We supply tubes to both ends of the K-beauty supply chain — the OEM/ODM manufacturers who make the products, and the brands whose names appear on shelves worldwide.</p>
+      </div>
+      <div class="clients-grid">
+        <div class="client-cell"><span>Kolmar Korea</span></div>
+        <div class="client-cell"><span>Cosmax</span></div>
+        <div class="client-cell"><span>Cosmecca</span></div>
+        <div class="client-cell"><span>Cosmocos</span></div>
+        <div class="client-cell"><span>COSRX</span></div>
+        <div class="client-cell"><span>Torriden</span></div>
+        <div class="client-cell"><span>Biodance</span></div>
+        <div class="client-cell"><span>Anua</span></div>
+        <div class="client-cell"><span>Manyo Factory</span></div>
+      </div>
+      <p class="clients-note">Representative clients — full list available upon request</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2 class="t-display">Ready to work with us?</h2>
+  <p>Send your requirements — we respond within 24 business hours.</p>
+  <a href="quote.html" class="btn-white">Get a Quote</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">DAESHIN<span style="color:var(--c-red)">.</span></div>
+      <p>PE Tube Manufacturer<br>Paju, South Korea</p>
+    </div>
+    <div class="footer-info">
+      <span><strong>Daeshin Co., Ltd.</strong></span>
+      <span>Paju, Gyeonggi-do, South Korea</span>
+      <span>info@daeshintube.com</span>
+      <span>ISO 9001 · ISO 45001 Certified</span>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Daeshin Co., Ltd. All rights reserved.</span>
+    <span>daeshintube.com</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+});
+</script>
