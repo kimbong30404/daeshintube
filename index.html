@@ -189,10 +189,9 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(10,10,10,0.97) 0%,
-    rgba(10,10,10,0.72) 45%,
-    rgba(10,10,10,0.30) 75%,
-    rgba(10,10,10,0.10) 100%
+    rgba(14,14,14,0.94) 0%,
+    rgba(14,14,14,0.38) 55%,
+    rgba(14,14,14,0.08) 100%
   );
 }
 .hero-content {
@@ -200,6 +199,18 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
   padding: 0 48px 72px;
   max-width: 800px;
+}
+.hero-content-inner {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    rgba(10,10,10,0.72) 0%,
+    rgba(10,10,10,0.55) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 28px 36px 32px;
+  border-left: 2px solid rgba(179,0,0,0.5);
 }
 .hero-eyebrow {
   display: flex;
@@ -219,7 +230,6 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(40px, 6vw, 78px);
   margin-bottom: 24px;
   color: var(--c-cream);
-  text-shadow: 0 2px 20px rgba(0,0,0,0.65);
 }
 .hero-h1 em {
   font-style: italic;
@@ -232,7 +242,6 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.7;
   margin-bottom: 40px;
   font-weight: 300;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.8);
 }
 .hero-actions {
   display: flex;
@@ -684,15 +693,17 @@ a { color: inherit; text-decoration: none; }
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      <span class="t-label">Est. 2007 · Paju, South Korea</span>
+    <div class="hero-content-inner">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="t-label">Est. 2007 · Paju, South Korea</span>
+      </div>
+      <h1 class="t-display hero-h1">
+        Korean PE Tube<br>
+        Manufacturer for<br>
+        <em>Global Beauty Brands</em>
+      </h1>
     </div>
-    <h1 class="t-display hero-h1">
-      Korean PE Tube<br>
-      Manufacturer for<br>
-      <em>Global Beauty Brands</em>
-    </h1>
   </div>
   <div class="hero-scroll" aria-hidden="true">
     <div class="hero-scroll-line"></div>
