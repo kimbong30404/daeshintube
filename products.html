@@ -164,38 +164,96 @@ a { color: inherit; text-decoration: none; }
   transition: transform 0.3s, opacity 0.3s;
 }
 
-/* ── PAGE HEADER ─────────────────────────────────────── */
-.page-header {
-  padding: 160px 48px 80px;
-  background: var(--c-bg2);
-  border-bottom: 1px solid var(--c-border2);
+/* ── HERO ─────────────────────────────────────────────── */
+.hero {
   position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
   overflow: hidden;
 }
-.page-header::before {
-  content: '';
+.hero-video-wrap {
   position: absolute;
-  top: 0; right: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(135deg, transparent 0%, rgba(179,0,0,0.04) 100%);
-  pointer-events: none;
+  inset: 0;
+  background: var(--c-bg2);
 }
-.page-header-inner {
-  max-width: 960px;
-  margin: 0 auto;
+.hero-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  opacity: 0.80;
 }
-.page-header h1 {
-  font-size: clamp(38px, 6vw, 70px);
-  color: var(--c-cream);
-  margin-bottom: 16px;
+.hero-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #111111 0%, #1A1A1A 40%, #222222 70%, #141414 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.page-header p {
-  font-size: 15px;
-  color: var(--c-mid);
-  max-width: 520px;
-  line-height: 1.7;
+.hero-placeholder-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.25;
 }
+.hero-placeholder-icon svg { width: 64px; height: 64px; }
+.hero-placeholder-icon p { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-cream2); }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14,14,14,0.94) 0%,
+    rgba(14,14,14,0.38) 55%,
+    rgba(14,14,14,0.08) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 48px 72px;
+  max-width: 800px;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.hero-eyebrow .t-label {
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--c-gold);
+}
+.hero-eyebrow-line {
+  width: 40px; height: 1px;
+  background: var(--c-gold);
+}
+.hero-h1 {
+  font-size: clamp(40px, 6vw, 78px);
+  margin-bottom: 24px;
+  color: #FFFFFF;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--c-gold);
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 32px; right: 48px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+}
+.hero-scroll span { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-cream2); writing-mode: vertical-lr; }
+.hero-scroll-line { width: 1px; height: 48px; background: var(--c-cream2); }
 
 /* ── PRODUCT TABS ────────────────────────────────────── */
 .prod-tabs {
@@ -551,14 +609,39 @@ a { color: inherit; text-decoration: none; }
   <a href="quote.html" class="btn-primary">Get a Quote</a>
 </div>
 
-<!-- PAGE HEADER -->
-<header class="page-header">
-  <div class="page-header-inner">
-    <span class="t-label" style="display:block;margin-bottom:16px">Our Products</span>
-    <h1 class="t-display">Tubes Built for<br><em style="color:var(--c-red)">K-Beauty Standards</em></h1>
-    <p>PE and PCR tubes — every diameter, every cap type, every finish. Manufactured in our 2024-built facility in Paju, South Korea.</p>
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-video-wrap">
+    <video id="heroVideo" autoplay muted loop playsinline poster="">
+      <source src="assets/videos/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-placeholder" id="heroPlaceholder">
+      <div class="hero-placeholder-icon">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#F5F0E8" stroke-width="1.2">
+          <rect x="8" y="28" width="48" height="28" rx="2"/>
+          <path d="M20 28V20a12 12 0 0 1 24 0v8"/>
+          <circle cx="32" cy="44" r="4"/>
+        </svg>
+        <p>Factory footage goes here</p>
+      </div>
+    </div>
   </div>
-</header>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="t-label">Our Products · Paju, South Korea</span>
+    </div>
+    <h1 class="t-display hero-h1">
+      Tubes Built for<br>
+      <em>K-Beauty Standards</em>
+    </h1>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
 <!-- TABS -->
 <div class="prod-tabs">
@@ -884,6 +967,14 @@ a { color: inherit; text-decoration: none; }
 </footer>
 
 <script>
+// Hide video placeholder once video loads
+const vid = document.getElementById('heroVideo');
+const ph  = document.getElementById('heroPlaceholder');
+if (vid) {
+  vid.addEventListener('loadeddata', () => { if (ph) ph.style.display = 'none'; });
+  vid.addEventListener('error', () => { vid.style.display = 'none'; });
+}
+
 // Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
