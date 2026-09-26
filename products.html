@@ -971,9 +971,9 @@ a { color: inherit; text-decoration: none; }
 const vid = document.getElementById('heroVideo');
 const ph  = document.getElementById('heroPlaceholder');
 if (vid) {
-  vid.playbackRate = 1.3;
+  vid.playbackRate = 1.5;
   vid.addEventListener('loadeddata', () => { if (ph) ph.style.display = 'none'; });
-  vid.addEventListener('canplay', () => { vid.playbackRate = 1.3; });
+  vid.addEventListener('canplay', () => { vid.playbackRate = 1.5; });
   vid.addEventListener('error', () => { vid.style.display = 'none'; });
 }
 
