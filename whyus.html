@@ -146,28 +146,94 @@ img { max-width: 100%; display: block; }
 }
 .nav-burger { display: none; }
 
-/* ── PAGE HEADER ─────────────────────────────────────── */
-.page-header {
-  padding: 160px 48px 80px;
-  max-width: 900px;
-  margin: 0 auto;
+/* ── HERO ─────────────────────────────────────────────── */
+.hero {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
 }
-.page-header-watermark {
+.hero-video-wrap {
   position: absolute;
-  top: 100px;
-  right: 48px;
-  font-family: 'Cormorant Garant', serif;
-  font-size: clamp(80px, 14vw, 160px);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--c-gold);
-  opacity: 0.05;
-  user-select: none;
-  pointer-events: none;
-  line-height: 1;
+  inset: 0;
+  background: var(--c-bg2);
 }
-.page-header h1 { font-size: clamp(48px, 8vw, 80px); margin-top: 16px; }
+.hero-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  opacity: 0.80;
+}
+.hero-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #111111 0%, #1A1A1A 40%, #222222 70%, #141414 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-placeholder-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.25;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14,14,14,0.94) 0%,
+    rgba(14,14,14,0.38) 55%,
+    rgba(14,14,14,0.08) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 48px 72px;
+  max-width: 800px;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.hero-eyebrow .t-label {
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: #B30000;
+}
+.hero-eyebrow-line {
+  width: 80px; height: 1px;
+  background: #B30000;
+}
+.hero-h1 {
+  font-size: clamp(40px, 6vw, 78px);
+  margin-bottom: 24px;
+  color: #FFFFFF;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: #B30000;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 32px; right: 48px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+}
+.hero-scroll span { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-cream2); writing-mode: vertical-lr; }
+.hero-scroll-line { width: 1px; height: 48px; background: var(--c-cream2); }
 
 /* ── WHY PILLARS ─────────────────────────────────────── */
 .why-section {
@@ -381,8 +447,8 @@ img { max-width: 100%; display: block; }
   .nav.scrolled { padding: 14px 20px; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
-  .page-header { padding: 120px 20px 60px; }
-  .page-header-watermark { display: none; }
+  .hero-content { padding: 0 20px 48px; }
+  .hero-scroll { display: none; }
   .why-section { padding: 0 20px 60px; }
   .why-intro { grid-template-columns: 1fr; gap: 32px; }
   .pillars-grid { grid-template-columns: 1fr; }
@@ -421,12 +487,38 @@ img { max-width: 100%; display: block; }
   <a href="about.html" class="mm-link">About</a>
 </div>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-header-watermark">WHY</div>
-  <span class="t-label">Our Advantage</span>
-  <h1 class="t-display">Built for Brands<br><em style="color:var(--c-gold)">That Demand More</em></h1>
-</div>
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-video-wrap">
+    <video id="heroVideo" autoplay muted loop playsinline poster="">
+      <source src="assets/videos/whyus_hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-placeholder" id="heroPlaceholder">
+      <div class="hero-placeholder-icon">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#F5F0E8" stroke-width="1.2">
+          <rect x="8" y="28" width="48" height="28" rx="2"/>
+          <path d="M20 28V20a12 12 0 0 1 24 0v8"/>
+          <circle cx="32" cy="44" r="4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="t-label">Our Advantage · Daeshin Co., Ltd.</span>
+    </div>
+    <h1 class="t-display hero-h1">
+      Built for Brands<br>
+      <em>That Demand More</em>
+    </h1>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
 <!-- WHY SECTION -->
 <div class="why-section">
@@ -553,4 +645,12 @@ document.getElementById('burger').addEventListener('click', () => {
 document.getElementById('menuClose').addEventListener('click', () => {
   document.getElementById('mobileMenu').classList.remove('open');
 });
+
+// Video hero fallback
+const vid = document.getElementById('heroVideo');
+const ph  = document.getElementById('heroPlaceholder');
+if (vid) {
+  vid.addEventListener('canplay', () => { if (ph) ph.style.display = 'none'; }, { once: true });
+  vid.addEventListener('error', () => { vid.style.display = 'none'; });
+}
 </script>
