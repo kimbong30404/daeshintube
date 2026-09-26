@@ -643,13 +643,6 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- TABS -->
-<div class="prod-tabs">
-  <div class="prod-tabs-inner">
-    <button class="tab-btn active" data-tab="pe">PE Tube</button>
-  </div>
-</div>
-
 <!-- ── PE TUBE SECTION ───────────────────────────────── -->
 <div class="prod-section active" id="tab-pe">
   <div style="padding-bottom:56px;margin-bottom:56px;border-bottom:1px solid var(--c-border2)">
@@ -894,22 +887,4 @@ mobileMenu.querySelectorAll('a').forEach(a => {
 });
 
 // Tabs
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabSections = document.querySelectorAll('.prod-section');
-function switchTab(id) {
-  tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
-  tabSections.forEach(s => s.classList.toggle('active', s.id === 'tab-' + id));
-}
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-});
-
-// Cross-tab link
-document.querySelectorAll('[data-tab-link]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    switchTab(a.dataset.tabLink);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
 </script>
