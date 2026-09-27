@@ -140,6 +140,7 @@ a { color: inherit; text-decoration: none; }
   display: inline-block;
 }
 .nav-cta:hover { background: var(--c-red2); }
+.nav-cta.active-page { background: var(--c-red2); cursor: default; }
 .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
 .nav-burger span {
   display: block; width: 22px; height: 1.5px;
@@ -470,7 +471,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
     <li><a href="about.html">About</a></li>
   </ul>
   </div>
-  <div class="nav-right"></div>
+  <div class="nav-right"><a href="quote.html" class="nav-cta active-page">GET A QUOTE</a></div>
   <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -480,6 +481,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 <div class="mobile-menu" id="mobileMenu">
   <a href="products.html" class="mm-link">Products</a>
   <a href="about.html" class="mm-link">About</a>
+  <a href="quote.html" class="mm-link mm-cta">GET A QUOTE →</a>
 </div>
 
 <!-- MAIN LAYOUT -->
