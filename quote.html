@@ -695,6 +695,7 @@ form.addEventListener('submit', (e) => {
 
   const templateParams = {
     subject: 'Inquiry from ' + (get('company') || get('contact') || 'Website'),
+    name: get('company') || get('contact') || 'Website',
     message: lines.join('\n'),
     reply_to: get('email'),
   };
