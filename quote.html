@@ -634,6 +634,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 </div>
 
 <!-- MOBILE MENU JS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -650,7 +651,11 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Form submit — mailto fallback (no backend required)
+// EmailJS
+(function(){
+  emailjs.init({ publicKey: 'U8croRmse7WnHkqnc' });
+})();
+
 const form = document.getElementById('quoteForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMsg');
@@ -673,7 +678,7 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  // Collect form data into email body
+  // Collect form data
   const get = id => (document.getElementById(id) || {}).value || '';
   const lines = [
     '=== DAESHIN INQUIRY ===',
@@ -688,12 +693,25 @@ form.addEventListener('submit', (e) => {
     get('notes') || '(none)',
   ];
 
-  const subject = encodeURIComponent('Inquiry from ' + (get('company') || get('contact') || 'Website'));
-  const body    = encodeURIComponent(lines.join('\n'));
-  window.location.href = 'mailto:sales@daeshintube.com?subject=' + subject + '&body=' + body;
+  const templateParams = {
+    subject: 'Inquiry from ' + (get('company') || get('contact') || 'Website'),
+    message: lines.join('\n'),
+    reply_to: get('email'),
+  };
 
-  // Show success message
-  form.style.display = 'none';
-  successMsg.classList.add('show');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  emailjs.send('service_dp6m5fa', 'template_wjj5v8c', templateParams)
+    .then(() => {
+      form.style.display = 'none';
+      successMsg.classList.add('show');
+    })
+    .catch((err) => {
+      console.error('EmailJS error:', err);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Inquiry';
+      alert('Something went wrong. Please email us directly at sales@daeshintube.com');
+    });
 });
 </script>
