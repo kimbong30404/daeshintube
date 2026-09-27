@@ -648,22 +648,6 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
         </div>
       </div>
 
-      <!-- Cap type -->
-      <div class="form-group">
-        <label>Cap Type (select all that apply)</label>
-        <div class="check-group">
-          <label class="check-label"><input type="checkbox" name="cap[]" value="민자 (Flat)"> 민자 — Flat Cap</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="원터치 (Flip Top)"> 원터치 — Flip Top</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="타원 (Oval)"> 타원 — Oval</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="타원원터치 (Oval Flip)"> 타원 원터치 — Oval Flip</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="둥근 (Round)"> 둥근 — Round</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="펌프 (Pump)"> 펌프 — Pump</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="드롭퍼 (Dropper)"> 드롭퍼 — Dropper</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="노즐 (Nozzle)"> 노즐 — Nozzle</label>
-          <label class="check-label"><input type="checkbox" name="cap[]" value="Not decided"> Not decided yet</label>
-        </div>
-      </div>
-
       <div class="form-divider"></div>
 
       <!-- Printing -->
@@ -806,8 +790,7 @@ form.addEventListener('submit', (e) => {
     'Diameter: '   + get('diameter'),
     'Volume: '     + get('volume'),
     'Quantity: '   + get('quantity'),
-    'Cap Type: '   + get('cap'),
-    'Tube Type: '  + get('tube_type'),
+'Tube Type: '  + get('tube_type'),
     'Print Method: ' + get('print'),
     '',
     '[Additional Notes]',
