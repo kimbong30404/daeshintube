@@ -91,29 +91,30 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32px 56px;
+  padding: 22px 56px;
   transition: background 0.4s, padding 0.4s;
   background: rgba(18,18,18,0.93);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--c-border2);
+  border-bottom: 1px solid var(--c-border);
 }
 .nav-logo {
   font-family: 'Cormorant Garant', serif;
   font-size: 26px;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: #F0F0F0;
+  color: var(--c-cream);
   display: flex;
   align-items: center;
   gap: 8px;
 }
+.nav .nav-logo { color: #FFFFFF; }
 .nav-logo span { color: var(--c-red); }
 .nav-logo img { display: block; }
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
   font-size: 22px;
   font-weight: 500;
-  color: rgba(240,240,240,0.75);
+  color: #FFFFFF;
   letter-spacing: 0.04em;
   transition: color 0.2s;
 }
