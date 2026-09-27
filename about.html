@@ -572,7 +572,32 @@ a { color: inherit; text-decoration: none; }
   .cta-band { padding: 48px 20px; }
   .footer { padding: 40px 20px; }
   .footer-info { text-align: left; }
+  .cta-section { padding: 80px 20px; }
 }
+
+/* ── CTA ─────────────────────────────────────────────── */
+.cta-section {
+  padding: 140px 48px 120px;
+  background: var(--c-bg);
+  text-align: center;
+}
+.cta-section h2 { color: var(--c-cream); margin-bottom: 16px; }
+.cta-section h2 em { font-style: italic; color: var(--c-red); }
+
+/* ── BTN ─────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--c-red);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--c-red2); }
 </style>
 
 <!-- NAV -->
@@ -713,89 +738,11 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- FACTORY -->
-<section class="section bg2">
-  <div class="section-inner">
-    <div style="text-align:center;max-width:640px;margin:0 auto;">
-      <span class="t-label" style="display:block;margin-bottom:16px;">Our Facility</span>
-      <h2 class="t-display" style="font-size:clamp(36px,5vw,56px);margin-bottom:24px;">Built New<br><em style="color:var(--c-red)">in 2026</em></h2>
-      <p style="font-size:14px;color:var(--c-mid);line-height:1.75;margin-bottom:12px;">Our Paju factory is 1 hour from Incheon International Airport — purpose-built for precision tube manufacturing with full in-house QC.</p>
-      <p style="font-size:14px;color:var(--c-mid);line-height:1.75;margin-bottom:48px;">Every tube is inspected before it leaves. We don't outsource quality control.</p>
-      <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
-        <div class="factory-bullet">Built and operational since 2026</div>
-        <div class="factory-bullet">Paju, Gyeonggi-do — 1 hr from Incheon Airport</div>
-        <div class="factory-bullet">5,000,000+ units monthly capacity</div>
-        <div class="factory-bullet">In-house printing, coating, and assembly</div>
-        <div class="factory-bullet">100% QC inspection on every unit</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section class="section">
-  <div class="section-inner">
-    <div style="margin-bottom:40px">
-      <span class="t-label" style="display:block;margin-bottom:12px">Certifications</span>
-      <h2 class="t-display" style="font-size:clamp(28px,3.5vw,44px);color:var(--c-cream)">Quality You Can<br><em style="color:var(--c-red)">Document</em></h2>
-    </div>
-    <div class="certs-grid">
-      <div class="cert-card">
-        <div class="cert-icon">
-          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.4">
-            <circle cx="10" cy="10" r="8"/>
-            <path d="M6.5 10l2.5 2.5 4.5-5"/>
-          </svg>
-        </div>
-        <div class="cert-body">
-          <h4>ISO 9001:2015</h4>
-          <p>Quality Management System — covers design, production, and delivery. Our most foundational certification, certified 2013.</p>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">
-          <svg viewBox="0 0 20 20" fill="none" stroke="var(--c-red)" stroke-width="1.4">
-            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/>
-          </svg>
-        </div>
-        <div class="cert-body">
-          <h4>ISO 45001:2018</h4>
-          <p>Occupational Health &amp; Safety Management — documents our commitment to a safe, consistent working environment and production quality. Certified 2025.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CLIENTS -->
-<section class="section bg2">
-  <div class="section-inner">
-    <div class="clients-wrap">
-      <div class="clients-intro">
-        <span class="t-label">Our Partners</span>
-        <h2 class="t-display">Trusted by Korea's<br><em style="color:var(--c-red)">Leading Beauty Industry</em></h2>
-        <p>We supply tubes to both ends of the K-beauty supply chain — the OEM/ODM manufacturers who make the products, and the brands whose names appear on shelves worldwide.</p>
-      </div>
-      <div class="clients-grid">
-        <div class="client-cell"><span>Kolmar Korea</span></div>
-        <div class="client-cell"><span>Cosmax</span></div>
-        <div class="client-cell"><span>Cosmecca</span></div>
-        <div class="client-cell"><span>Cosmocos</span></div>
-        <div class="client-cell"><span>COSRX</span></div>
-        <div class="client-cell"><span>Torriden</span></div>
-        <div class="client-cell"><span>Biodance</span></div>
-        <div class="client-cell"><span>Anua</span></div>
-        <div class="client-cell"><span>Manyo Factory</span></div>
-      </div>
-      <p class="clients-note">Representative clients — full list available upon request</p>
-    </div>
-  </div>
-</section>
 
 <!-- CTA -->
-<section class="cta-section" id="quote" aria-label="Contact" style="background:var(--c-bg);padding:100px 48px;text-align:center;">
+<section class="cta-section" id="quote" aria-label="Contact">
   <span class="t-label" style="display:block;margin-bottom:20px">Get a Quote</span>
-  <h2 class="t-display" style="font-size:clamp(36px,6vw,64px);">Ready to Work<br><em>Together?</em></h2>
+  <h2 class="t-display">Ready to Work<br><em>Together?</em></h2>
   <a href="quote.html" class="btn-primary" style="margin-top:40px;display:inline-block">Start Your Inquiry →</a>
 
   <div style="margin-top:80px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap">
