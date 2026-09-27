@@ -265,6 +265,34 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 
 /* Checkbox group */
 .check-group { display: flex; flex-direction: column; gap: 8px; }
+
+/* Custom checkbox */
+.check-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--c-border-input);
+  background: var(--c-bg);
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+.check-label input[type="checkbox"]:checked {
+  background: var(--c-red);
+  border-color: var(--c-red);
+}
+.check-label input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: 0px;
+  width: 5px; height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
 .check-label {
   display: flex;
   align-items: center;
@@ -276,7 +304,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
   text-transform: none;
   font-weight: 400;
 }
-.check-label input[type="checkbox"] {
+.check-label-old {
   width: 16px; height: 16px;
   flex-shrink: 0;
   accent-color: var(--c-red);
@@ -374,17 +402,33 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
   grid-column: 1 / -1;
   background: var(--c-bg2);
   border-top: 1px solid var(--c-border2);
-  padding: 32px 48px;
+  padding: 48px;
 }
 .footer-inner {
-  max-width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-brand .nav-logo { margin-bottom: 8px; }
+.footer-brand p { font-size: 12px; color: var(--c-mid); line-height: 1.6; max-width: 240px; margin-top: 8px; }
+.footer-info { display: flex; flex-direction: column; gap: 6px; text-align: right; }
+.footer-info span { font-size: 12px; color: var(--c-mid); }
+.footer-info strong { color: var(--c-cream2); }
+.footer-copy {
+  max-width: 960px; margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-border2);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
 }
-.footer-inner span { font-size: 11px; color: var(--c-mid); letter-spacing: 0.04em; }
+.footer-copy span { font-size: 11px; color: var(--c-mid); letter-spacing: 0.04em; }
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -400,7 +444,8 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
   .nav { padding: 18px 20px; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: block; }
-  .footer { padding: 24px 20px; }
+  .footer { padding: 40px 20px; }
+  .footer-info { text-align: left; }
 }
 </style>
 
@@ -511,7 +556,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
       3. action URL을 아래 YOUR_FORM_ID 자리에 붙여넣기
       예: action="https://formspree.io/f/xabc1234"
     -->
-    <form id="quoteForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+    <form id="quoteForm" novalidate>
 
       <!-- Company info -->
       <div class="form-section-title">Company Information</div>
@@ -645,7 +690,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
       <!-- Sample -->
       <div class="form-group">
         <label class="check-label" style="font-size:13px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--c-cream2)">
-          <input type="checkbox" name="sample_request" value="yes" style="width:16px;height:16px;accent-color:var(--c-red)">
+          <input type="checkbox" name="sample_request" value="yes">
           I'd like to request a production sample before placing a full order
         </label>
       </div>
@@ -673,8 +718,20 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">DAESHIN 🇰🇷</div>
+        <p>PE Tube Manufacturer<br>Paju, South Korea</p>
+      </div>
+      <div class="footer-info">
+        <span><strong>Daeshin Co., Ltd.</strong></span>
+        <span>Paju, Gyeonggi-do, South Korea</span>
+        <span>sales@daeshintube.com</span>
+        <span>ISO 9001 · ISO 45001 Certified</span>
+      </div>
+    </div>
+    <div class="footer-copy">
       <span>© 2026 Daeshin Co., Ltd. All rights reserved.</span>
-      <span>ISO 9001 · ISO 45001 · Paju, South Korea</span>
+      <span>daeshintube.com</span>
     </div>
   </footer>
 
@@ -697,12 +754,12 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Form submit — Formspree AJAX
+// Form submit — mailto fallback (no backend required)
 const form = document.getElementById('quoteForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMsg = document.getElementById('successMsg');
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   // Basic validation
@@ -720,27 +777,35 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending…';
+  // Collect form data into email body
+  const get = id => (document.getElementById(id) || {}).value || '';
+  const lines = [
+    '=== DAESHIN INQUIRY ===',
+    '',
+    '[Company Information]',
+    'Company: ' + get('company'),
+    'Contact: ' + get('contact'),
+    'Email: '   + get('email'),
+    'Country: ' + get('country'),
+    '',
+    '[Product Requirements]',
+    'Diameter: '   + get('diameter'),
+    'Volume: '     + get('volume'),
+    'Quantity: '   + get('quantity'),
+    'Cap Type: '   + get('cap'),
+    'Tube Type: '  + get('tube_type'),
+    'Print Method: ' + get('print'),
+    '',
+    '[Additional Notes]',
+    get('notes') || '(none)',
+  ];
 
-  try {
-    const data = new FormData(form);
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
+  const subject = encodeURIComponent('Inquiry from ' + (get('company') || get('contact') || 'Website'));
+  const body    = encodeURIComponent(lines.join('\n'));
+  window.location.href = 'mailto:sales@daeshintube.com?subject=' + subject + '&body=' + body;
 
-    if (res.ok) {
-      form.style.display = 'none';
-      successMsg.classList.add('show');
-    } else {
-      throw new Error('Server error');
-    }
-  } catch {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = 'Send Inquiry <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
-    alert('Something went wrong. Please email us directly at sales@daeshintube.com');
-  }
+  // Show success message
+  form.style.display = 'none';
+  successMsg.classList.add('show');
 });
 </script>
