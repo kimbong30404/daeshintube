@@ -14,6 +14,7 @@
   --c-gold2:    #8C0000;
   --c-mid:      #AAAAAA;
   --c-border:   rgba(179,0,0,0.25);
+  --c-border2:  rgba(240,240,240,0.08);
   --c-overlay:  rgba(18,18,18,0.68);
   color-scheme: dark;
 }
@@ -28,6 +29,7 @@
     --c-gold2:   #8C0000;
     --c-mid:     #555555;
     --c-border:  rgba(179,0,0,0.2);
+    --c-border2: rgba(0,0,0,0.08);
     --c-overlay: rgba(245,245,245,0.55);
     color-scheme: light;
   }
@@ -42,6 +44,7 @@
   --c-gold2:   #8C0000;
   --c-mid:     #AAAAAA;
   --c-border:  rgba(179,0,0,0.25);
+  --c-border2: rgba(240,240,240,0.08);
   --c-overlay: rgba(18,18,18,0.68);
   color-scheme: dark;
 }
@@ -509,8 +512,8 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(179,0,0,0.18);
-  border: 1px solid rgba(179,0,0,0.18);
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
 }
 .stat-box {
   background: var(--c-bg2);
@@ -793,7 +796,7 @@ a { color: inherit; text-decoration: none; }
 </section>
 
 <!-- STATS -->
-<section style="padding: 64px 48px; background: var(--c-bg);" aria-label="Company highlights">
+<section style="padding: 64px 48px; background: var(--c-bg2);" aria-label="Company highlights">
   <div style="max-width:960px;margin:0 auto;">
     <div class="stats-row">
       <div class="stat-box">
