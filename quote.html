@@ -650,47 +650,10 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 
       <div class="form-divider"></div>
 
-      <!-- Printing -->
-      <div class="form-section-title">Printing &amp; Finishing</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="printing">Printing Method</label>
-          <select id="printing" name="printing">
-            <option value="" disabled selected>Select method</option>
-            <option>Offset (Full Color)</option>
-            <option>Silk Screen (up to 3 colors)</option>
-            <option>Hot Stamping</option>
-            <option>Offset + Hot Stamping</option>
-            <option>Not decided yet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="coating">Coating</label>
-          <select id="coating" name="coating">
-            <option value="" disabled selected>Select finish</option>
-            <option>Gloss (유광)</option>
-            <option>Matte (무광)</option>
-            <option>Semi-Matte (반무광)</option>
-            <option>Rubber Coating</option>
-            <option>Not decided yet</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-divider"></div>
-
       <!-- Message -->
       <div class="form-group">
         <label for="message">Additional Notes</label>
         <textarea id="message" name="message" placeholder="Any special requirements, formulation details, timeline, or questions — the more detail, the faster we can quote."></textarea>
-      </div>
-
-      <!-- Sample -->
-      <div class="form-group">
-        <label class="check-label" style="font-size:13px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--c-cream2)">
-          <input type="checkbox" name="sample_request" value="yes">
-          I'd like to request a production sample before placing a full order
-        </label>
       </div>
 
       <button type="submit" class="btn-submit" id="submitBtn">
@@ -791,7 +754,6 @@ form.addEventListener('submit', (e) => {
     'Volume: '     + get('volume'),
     'Quantity: '   + get('quantity'),
 'Tube Type: '  + get('tube_type'),
-    'Print Method: ' + get('print'),
     '',
     '[Additional Notes]',
     get('notes') || '(none)',
