@@ -504,6 +504,80 @@ a { color: inherit; text-decoration: none; }
 }
 .pillar-body p { font-size: 12px; color: var(--c-mid); line-height: 1.6; }
 
+/* ── STATS ROW ───────────────────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--c-border2);
+  border: 1px solid var(--c-border2);
+}
+.stat-box {
+  background: var(--c-bg2);
+  padding: 40px 28px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Cormorant Garant', serif;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 300;
+  color: var(--c-gold);
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-desc {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--c-mid);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── CERTS CARD ──────────────────────────────────────── */
+.certs-section {
+  background: var(--c-bg2);
+  border-top: 1px solid var(--c-border);
+  padding: 64px 48px;
+}
+.certs-inner-card {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.certs-inner-card h2 { font-size: clamp(28px, 4vw, 42px); margin: 16px 0 48px; }
+.certs-grid {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cert-card {
+  background: var(--c-bg3);
+  border: 1px solid var(--c-border);
+  border-radius: 4px;
+  padding: 36px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  min-width: 200px;
+}
+.cert-card .cert-icon {
+  width: 48px; height: 48px;
+  background: rgba(179,0,0,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cert-card .cert-name {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--c-cream);
+}
+.cert-card .cert-desc { font-size: 13px; color: var(--c-mid); text-align: center; line-height: 1.5; }
+
 /* ── CERTS ───────────────────────────────────────────── */
 .certs {
   padding: 64px 48px;
@@ -719,22 +793,58 @@ a { color: inherit; text-decoration: none; }
 </section>
 
 <!-- STATS -->
-<section class="stats" aria-label="Company highlights">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-num" id="statYear">19</div>
-      <div class="stat-desc">Years of manufacturing<br>excellence</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">5M<span style="font-size:0.6em;vertical-align:middle">+</span></div>
-      <div class="stat-desc">Units monthly<br>production capacity</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100<span style="font-size:0.5em;vertical-align:middle">%</span></div>
-      <div class="stat-desc">Quality inspection<br>on every unit</div>
+<section style="padding: 88px 48px; background: var(--c-bg2);" aria-label="Company highlights">
+  <div style="max-width:960px;margin:0 auto;">
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num">2007</div>
+        <div class="stat-desc">Year established<br>Paju, South Korea</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">19<span style="font-size:0.55em;vertical-align:middle">yrs</span></div>
+        <div class="stat-desc">Manufacturing<br>experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5M<span style="font-size:0.55em;vertical-align:middle">+</span></div>
+        <div class="stat-desc">Units monthly<br>capacity</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100<span style="font-size:0.45em;vertical-align:middle">%</span></div>
+        <div class="stat-desc">Quality inspection<br>every unit</div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- CERTS -->
+<div class="certs-section">
+  <div class="certs-inner-card">
+    <span class="t-label">Certifications</span>
+    <h2 class="t-display">Quality You Can <em style="color:var(--c-gold)">Verify</em></h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="var(--c-gold)" stroke-width="1.4">
+            <circle cx="9" cy="9" r="7"/>
+            <path d="M6 9l2 2 4-4"/>
+          </svg>
+        </div>
+        <span class="cert-name">ISO 9001</span>
+        <span class="cert-desc">Quality Management System<br>Certified 2013</span>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="var(--c-gold)" stroke-width="1.4">
+            <circle cx="9" cy="9" r="7"/>
+            <path d="M6 9l2 2 4-4"/>
+          </svg>
+        </div>
+        <span class="cert-name">ISO 45001</span>
+        <span class="cert-desc">Safety & Health Management<br>Certified 2025</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- CLIENTS -->
 <section class="clients" id="about" aria-label="Clients">
